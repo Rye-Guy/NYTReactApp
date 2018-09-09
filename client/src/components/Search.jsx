@@ -2,12 +2,24 @@ const React = require("react");
 
 const Search = (props) =>{
     return ( 
-    <div class="row">
-        <form class="col s12">
-            <div class="row">
-                <div class="input-field col s12">
-                    <textarea id="textarea1" class="materialize-textarea"></textarea>
-                    <label for="textarea1">Textarea</label>
+    <div className="row">
+        <form className="col s8">
+            <div className="row">
+                <div className="input-field col s8">
+                    <textarea onChange={props.handleSearchChange} id="search" className="materialize-textarea"></textarea>
+                    <label for="textarea1">Search Term</label>
+                 </div>
+            </div>
+            <div className="row">
+                <div className="input-field col s8">
+                    <textarea onChange={props.handleStartYearChange} id="startYear" className="materialize-textarea"></textarea>
+                    <label for="textarea1">Start Year</label>
+                 </div>
+            </div>
+            <div className="row">
+                <div className="input-field col s8">
+                    <textarea onChange={props.handleEndYearChange} id="endYear" className="materialize-textarea"></textarea>
+                    <label for="textarea1">End Year</label>
                  </div>
             </div>
         </form>

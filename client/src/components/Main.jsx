@@ -10,9 +10,31 @@ class Main extends Component {
         articles: []
     }
 
+    handleSearchChange = (event) =>{
+       this.setState({search: event.target.value}); 
+       console.log(event.target.value)
+    }
+
+    handleStartYearChange = (event) =>{
+        this.setState({startYear: event.target.value});
+        console.log(event.target.value);
+    }
+
+    handleEndYearChange = (event) =>{
+        this.setState({endYear: event.target.value});
+        console.log(event.target.value);
+    }
+
+   
+
+
     render(){
         return (
-            <Search></Search>
+            <Search 
+            handleSearchChange={this.handleSearchChange}
+            handleStartYearChange={this.handleStartYearChange}
+            handleEndYearChange={this.handleEndYearChange}>
+            </Search>
         );
     }
 }
