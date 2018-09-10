@@ -22,6 +22,7 @@ const Search = (props) =>{
                     <label for="textarea1">End Year</label>
                  </div>
             </div>
+            <button onClick={props.handleFormSubmit} className="btn waves-effect waves-light" type="submit">Submit</button>
         </form>
     </div>
     )
