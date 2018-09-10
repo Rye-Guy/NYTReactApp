@@ -47,6 +47,7 @@ class Main extends Component {
         const newArticle = {title: findArticleTitle.headline.main, snippet: findArticleTitle.snippet, date: findArticleTitle.pub_date, url: findArticleTitle.web_url};
         API.saveArticle(newArticle);
         console.log(newArticle.title + newArticle.snippet + newArticle.date + newArticle.url);
+        this.getSavedArticles();
     }
 
 
@@ -54,6 +55,7 @@ class Main extends Component {
         const articleTitle = this.state.savedArticles.find(el => el.title === title);
         console.log(articleTitle);
         API.deleteArticle(articleTitle);
+        this.getSavedArticles();
     }
 
     renderArticles = () => {
