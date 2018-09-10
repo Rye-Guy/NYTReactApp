@@ -11,7 +11,7 @@ const Saved = (props) =>{
             </div>
             <div className="card-action">
             <a href={props.url}>Article Link</a>
-            <a className="waves-effect waves-red btn-small offset-s6 red lighten-2" onClick={() => props.deleteArticle(props.headline)}></a>
+            <a className="waves-effect waves-red btn-small offset-s6 red lighten-2" onClick={() => props.deleteArticle(props.headline)}>Delete</a>
             </div>
         </div>
     </div>

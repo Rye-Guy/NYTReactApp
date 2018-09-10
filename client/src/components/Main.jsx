@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Search from './Search';
+import ArticlesContainer from './ArticlesContainer';
 import Response from './Response';
 import Saved from './Saved';
 import API from '../utils/api';
@@ -88,8 +89,6 @@ class Main extends Component {
             />
         ));
     }
-
-
     render(){
         return (
         <div>
@@ -100,10 +99,10 @@ class Main extends Component {
             handleFormSubmit={this.handleFormSubmit}
             renderArticles={this.renderArticles}>
             </Search>
-            <div>
-                {this.renderArticles()}
-                {this.renderSavedArticles()}
-            </div>
+            <ArticlesContainer 
+            renderArticles={this.renderArticles}
+            renderSavedArticles={this.renderSavedArticles}>
+            </ArticlesContainer>
         </div>
         );
     }
