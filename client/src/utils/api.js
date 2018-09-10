@@ -10,6 +10,12 @@ const api = {
     saveArticle: function(articleOjb){
         console.log(articleOjb);
         return axios.post('/api/saved', articleOjb);
+    },
+    getArticles: function(){
+        return axios.get('/api/saved');
+    },
+    deleteArticle: function(articleTitle){
+        return axios.delete('/api/saved', articleTitle);
     }
 }
 

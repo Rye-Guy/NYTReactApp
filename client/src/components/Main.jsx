@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Search from './Search';
 import Response from './Response';
+import Saved from './Saved';
 import API from '../utils/api';
 
 
@@ -11,6 +12,10 @@ class Main extends Component {
         endYear: '',
         articles: [],
         savedArticles: []
+    }
+
+    componentDidMount(){
+        this.getSavedArticles()
     }
 
     handleSearchChange = (event) =>{
@@ -43,6 +48,13 @@ class Main extends Component {
         console.log(newArticle.title + newArticle.snippet + newArticle.date + newArticle.url);
     }
 
+
+    deleteArticle = (title) =>{
+        const articleTitle = this.state.savedArticles.find(el => el.title === title);
+        console.log(articleTitle);
+        API.deleteArticle(articleTitle);
+    }
+
     renderArticles = () => {
         return this.state.articles.map(article =>(
             <Response 
@@ -57,9 +69,30 @@ class Main extends Component {
         ));
     }
 
-   
+    getSavedArticles = () =>{
+        API.getArticles().then((res)=>{
+            console.log(res);
+            this.setState({savedArticles: res.data});
+        });
+    }
+
+    renderSavedArticles = () =>{
+        return this.state.savedArticles.map(article =>(
+            <Saved 
+            key={article._id}
+            headline={article.title}
+            snippet={article.snippet}
+            date={article.date}
+            url={article.url}
+            deleteArticle={this.deleteArticle}
+            />
+        ));
+    }
+
+
     render(){
         return (
+        <div>
             <Search 
             handleSearchChange={this.handleSearchChange}
             handleStartYearChange={this.handleStartYearChange}
@@ -67,6 +100,11 @@ class Main extends Component {
             handleFormSubmit={this.handleFormSubmit}
             renderArticles={this.renderArticles}>
             </Search>
+            <div>
+                {this.renderArticles()}
+                {this.renderSavedArticles()}
+            </div>
+        </div>
         );
     }
 }
