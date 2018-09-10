@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Search from './Search';
+import Response from './Response';
 import API from '../utils/api';
 
 
@@ -33,6 +34,16 @@ class Main extends Component {
         });
     }
 
+    renderArticles = () => {
+        return this.state.articles.map(article =>(
+            <Response 
+            headline={article.headline.main}
+            snippet={article.snippet}
+            url={article.web_url}
+            />
+        ));
+    }
+
    
 
 
@@ -42,7 +53,8 @@ class Main extends Component {
             handleSearchChange={this.handleSearchChange}
             handleStartYearChange={this.handleStartYearChange}
             handleEndYearChange={this.handleEndYearChange}
-            handleFormSubmit={this.handleFormSubmit}>
+            handleFormSubmit={this.handleFormSubmit}
+            renderArticles={this.renderArticles}>
             </Search>
         );
     }
