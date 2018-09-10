@@ -9,7 +9,8 @@ class Main extends Component {
         search: '',
         startYear: '',
         endYear: '',
-        articles: []
+        articles: [],
+        savedArticles: []
     }
 
     handleSearchChange = (event) =>{
@@ -34,19 +35,29 @@ class Main extends Component {
         });
     }
 
+    handleArticleSave = (title) =>{
+        const findArticleTitle = this.state.articles.find(el => el.headline.main === title);
+        console.log(findArticleTitle);
+        const newArticle = {title: findArticleTitle.headline.main, snippet: findArticleTitle.snippet, date: findArticleTitle.pub_date, url: findArticleTitle.web_url};
+        API.saveArticle(newArticle);
+        console.log(newArticle.title + newArticle.snippet + newArticle.date + newArticle.url);
+    }
+
     renderArticles = () => {
         return this.state.articles.map(article =>(
             <Response 
+            key={article._id}
+            id={article._id}
             headline={article.headline.main}
             snippet={article.snippet}
+            date={article.pub_date}
             url={article.web_url}
+            saveArticle={this.handleArticleSave}
             />
         ));
     }
 
    
-
-
     render(){
         return (
             <Search 

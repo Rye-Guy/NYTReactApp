@@ -12,7 +12,7 @@ const articleSchema = new Schema({
         unique: true
     },
     date:{
-        type: Date
+        type: String
     },
     url:{
         type: String,
