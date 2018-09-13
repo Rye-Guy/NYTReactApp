@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require("path");
-
+const port = process.env.PORT || 3001;
 const app = express();
 //Middleware
 app.use(bodyParser.urlencoded({extended: true}));
@@ -42,7 +42,7 @@ mongoose.connect(db, (err)=>{
     }
 });
 //Run Server
-const port = process.env.PORT || 3001;
+
 app.listen(port, ()=>{
     console.log('app running on port:' + port);
 });
