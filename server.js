@@ -9,8 +9,9 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 console.log(process.cwd());
-app.use(express.static(__dirname + '/client/build/'));
-
+if(process.NODE_ENV === "production"){
+app.use(express.static('client/build/'));
+}
 //CORS Set up
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -30,10 +31,8 @@ router.get('/', (req, res) =>{
 
 app.use(router);
 //DB Connection
-mongoose.Promise = Promise;
-
-
 const db = process.env.MONGODB_URI || 'mongodb://localhost/nytReactApp';
+mongoose.Promise = Promise;
 
 mongoose.connect(db, (err)=>{
     if(err){
