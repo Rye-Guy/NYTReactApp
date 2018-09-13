@@ -8,11 +8,11 @@ const app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-if(process.env.NODE_ENV === "production"){
-app.use(express.static('/client/build/'));
-}else{
-    app.use(express.static(__dirname, '/client/public'));
-}
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static("client/build"));
+  } else {
+    app.use(express.static(__dirname + "/client/public"));
+  }
 
 //CORS Set up
 app.use(function(req, res, next) {
