@@ -43,6 +43,6 @@ mongoose.connect(db, (err)=>{
 });
 //Run Server
 
-app.listen(port, ()=>{
+app.listen(process.env.PORT, ()=>{
     console.log('app running on port:' + port);
 });
