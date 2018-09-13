@@ -8,10 +8,12 @@ const app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-console.log(process.cwd());
 if(process.env.NODE_ENV === "production"){
 app.use(express.static('client/build/'));
+}else{
+    app.use(express.static(__dirname, '/client/public'));
 }
+
 //CORS Set up
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -25,7 +27,7 @@ const router = new express.Router();
 router.get('/api/saved', controller.find);
 router.post('/api/saved', controller.insert);
 router.delete('/api/saved', controller.delete);
-router.get('/', (req, res) =>{
+router.get('/*', (req, res) =>{
     res.sendFile(path.join(__dirname, './client/build/index.html'));
 });
 
@@ -43,6 +45,6 @@ mongoose.connect(db, (err)=>{
 });
 //Run Server
 
-app.listen(process.env.PORT, ()=>{
+app.listen(port, ()=>{
     console.log('app running on port:' + port);
 });
