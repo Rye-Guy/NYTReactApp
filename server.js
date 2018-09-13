@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 console.log(process.cwd());
-if(process.NODE_ENV === "production"){
+if(process.env.NODE_ENV === "production"){
 app.use(express.static('client/build/'));
 }
 //CORS Set up
