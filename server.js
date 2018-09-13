@@ -27,7 +27,7 @@ const router = new express.Router();
 router.get('/api/saved', controller.find);
 router.post('/api/saved', controller.insert);
 router.delete('/api/saved', controller.delete);
-router.get('/*', (req, res) =>{
+router.get('/', (req, res) =>{
     res.sendFile(path.join(__dirname, './client/build/index.html'));
 });
 
