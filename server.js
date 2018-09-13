@@ -30,7 +30,11 @@ router.get('/', (req, res) =>{
 
 app.use(router);
 //DB Connection
-const db = 'mongodb://localhost/nytReactApp';
+mongoose.Promise = Promise;
+
+
+const db = process.env.MONGODB_URI || 'mongodb://localhost/nytReactApp';
+
 mongoose.connect(db, (err)=>{
     if(err){
         console.log(err);
